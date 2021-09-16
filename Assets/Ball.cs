@@ -55,11 +55,6 @@ public class Ball : MonoBehaviour {
 		{
 			nextBall.SetActive(true);
 		}
-        if (Enemy.EnemiesAlive == 0 || nextBall == null || Enemy.EnemiesAlive == 0 && nextBall == null)
-		{
-			//Enemy.EnemiesAlive = 0;
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		}
 	}
 
 }

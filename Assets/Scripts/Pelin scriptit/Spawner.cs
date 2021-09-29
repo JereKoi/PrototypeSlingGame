@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
     Vector2 whereToSpawn;
     public float spawnRate = 2f;
     float nextSpawn = 0.0f;
+    public int speed;
 
     public static Spawner instance;
     public int FruitsOnScreen;
@@ -30,7 +31,7 @@ public class Spawner : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            randX = Random.Range(-8.4f, 8.4f);
+            randX = Random.Range(-1f, 1f);
             whereToSpawn = new Vector2(randX, transform.position.y);
             Instantiate(enemy, whereToSpawn, Quaternion.identity);
 
@@ -38,7 +39,6 @@ public class Spawner : MonoBehaviour
 
             if (enemy == null)
             {
-                Debug.Log("joo");
                 FruitsOnScreen--;
                 return;
             }

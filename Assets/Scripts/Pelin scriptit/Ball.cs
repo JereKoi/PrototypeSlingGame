@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour {
 	public float maxDragDistance = 2f;
 
 	public GameObject nextBall;
+	public GameObject spawnPosition;
 
 	private bool isPressed = false;
 
@@ -51,10 +52,11 @@ public class Ball : MonoBehaviour {
 
 		yield return new WaitForSeconds(2f);
 
-		if (nextBall != null)
-		{
-			nextBall.SetActive(true);
-		}
-	}
+		//nextBall = Instantiate(nextBall, spawnPosition, Quaternion.identity);
 
+		//if (nextBall != null)
+		//{
+		//	nextBall.SetActive(true);
+		//}
+	}
 }

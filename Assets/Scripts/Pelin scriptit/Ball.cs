@@ -8,24 +8,36 @@ public class Ball : MonoBehaviour {
 	public Rigidbody2D rb;
 	public Rigidbody2D hook;
 
-	public float releaseTime = .15f;
+	[SerializeField] float releaseTime = .50f;
 	public float maxDragDistance = 2f;
+	public float shootPower = 10;
 
-	public GameObject nextBall;
-	public GameObject spawnPosition;
 
-	private bool isPressed = false;
+	private PlayerRespawn Instance;
 
-	void Update ()
+	public bool isPressed = false;
+
+    private void Start()
+    {
+		//isPressed = true;
+		rb.isKinematic = true;
+		rb.velocity = Vector2.zero;
+    }
+
+    void Update ()
 	{
 		if (isPressed)
 		{
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 			if (Vector3.Distance(mousePos, hook.position) > maxDragDistance)
+            {
 				rb.position = hook.position + (mousePos - hook.position).normalized * maxDragDistance;
+			}
 			else
+            {
 				rb.position = mousePos;
+			}
 		}
 	}
 
@@ -39,24 +51,24 @@ public class Ball : MonoBehaviour {
 	{
 		isPressed = false;
 		rb.isKinematic = false;
+		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		rb.velocity = (mousePos - hook.position).normalized * -shootPower;
 
-		StartCoroutine(Release());
+		StartCoroutine(Respawn());
 	}
 
-	IEnumerator Release ()
+	IEnumerator Respawn ()
 	{
-		yield return new WaitForSeconds(releaseTime);
+		//yield return new WaitForSeconds(releaseTime);
 
-		GetComponent<SpringJoint2D>().enabled = false;
-		this.enabled = false;
+
+		//GetComponent<SpringJoint2D>().enabled = false;
+		//this.enabled = false;
 
 		yield return new WaitForSeconds(2f);
 
-		//nextBall = Instantiate(nextBall, spawnPosition, Quaternion.identity);
+		PlayerRespawn.Instance.BallSpawn();
 
-		//if (nextBall != null)
-		//{
-		//	nextBall.SetActive(true);
-		//}
+		Destroy(gameObject);
 	}
 }

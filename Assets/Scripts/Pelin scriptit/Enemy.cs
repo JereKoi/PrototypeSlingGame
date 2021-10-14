@@ -12,8 +12,9 @@ public class Enemy : MonoBehaviour {
 		if (enemyHit.collider.CompareTag("Player"))
 		{
 			Destroy(enemy);
-			Spawner.instance.FruitsOnScreen--;
+			//Spawner.instance.FruitsOnScreen--;
 			Instantiate(deathEffect, transform.position, Quaternion.identity);
+
 		}
 	}
 }

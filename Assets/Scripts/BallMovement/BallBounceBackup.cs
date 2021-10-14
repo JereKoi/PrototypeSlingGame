@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallBounce : MonoBehaviour
+public class BallBounceBackup : MonoBehaviour
 {
     public Rigidbody2D appelsiini;
     public Rigidbody2D munakoiso;

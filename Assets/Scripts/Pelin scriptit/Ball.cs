@@ -8,18 +8,21 @@ public class Ball : MonoBehaviour {
 	public Rigidbody2D rb;
 	public Rigidbody2D hook;
 
-	[SerializeField] float releaseTime = .50f;
+	//[SerializeField] float releaseTime = .50f;
 	public float maxDragDistance = 2f;
 	public float shootPower = 10;
 
+	private bool isPressed = false;
 
-	private PlayerRespawn Instance;
-
-	public bool isPressed = false;
+	public GameObject Appelsiini;
+	public GameObject Munakoiso;
+	public GameObject Peach;
+	public GameObject Paaryna;
+	public GameObject Vesimelooni;
+	//public GameObject deathEffect;
 
     private void Start()
     {
-		//isPressed = true;
 		rb.isKinematic = true;
 		rb.velocity = Vector2.zero;
     }
@@ -59,16 +62,48 @@ public class Ball : MonoBehaviour {
 
 	IEnumerator Respawn ()
 	{
-		//yield return new WaitForSeconds(releaseTime);
-
-
-		//GetComponent<SpringJoint2D>().enabled = false;
-		//this.enabled = false;
-
 		yield return new WaitForSeconds(2f);
-
 		PlayerRespawn.Instance.BallSpawn();
-
 		Destroy(gameObject);
+	}
+
+	void OnCollisionEnter2D(Collision2D enemyHit)
+	{
+		if (enemyHit.collider.CompareTag("Appelsiini"))
+		{
+
+			//Spawner.instance.FruitsOnScreen--;
+			//Instantiate(deathEffect, transform.position, Quaternion.identity);
+			PlayerRespawn.Instance.AppelsiiniSpawn();
+			Destroy(gameObject);
+		}
+        if (enemyHit.collider.CompareTag("Munakoiso"))
+        {
+
+			//Instantiate(deathEffect, transform.position, Quaternion.identity);
+			PlayerRespawn.Instance.MunakoisoSpawn();
+			Destroy(gameObject);
+		}
+        if (enemyHit.collider.CompareTag("Peach"))
+        {
+
+			//Instantiate(deathEffect, transform.position, Quaternion.identity);
+			PlayerRespawn.Instance.PeachSpawn();
+			Destroy(gameObject);
+		}
+        if (enemyHit.collider.CompareTag("Paaryna"))
+        {
+
+			//Instantiate(deathEffect, transform.position, Quaternion.identity);
+			PlayerRespawn.Instance.PaarynaSpawn();
+			Destroy(gameObject);
+		}
+        if (enemyHit.collider.CompareTag("Vesimelooni"))
+        {
+
+			//Instantiate(deathEffect, transform.position, Quaternion.identity);
+			PlayerRespawn.Instance.VesimelooniSpawn();
+			Destroy(gameObject);
+		}
 	}
 }

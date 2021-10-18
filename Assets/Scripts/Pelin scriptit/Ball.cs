@@ -25,6 +25,8 @@ public class Ball : MonoBehaviour {
     {
 		rb.isKinematic = true;
 		rb.velocity = Vector2.zero;
+
+		StartCoroutine(RespawnAppelsiini());
     }
 
     void Update ()
@@ -71,39 +73,39 @@ public class Ball : MonoBehaviour {
 	{
 		if (enemyHit.collider.CompareTag("Appelsiini"))
 		{
-
-			//Spawner.instance.FruitsOnScreen--;
-			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			PlayerRespawn.Instance.AppelsiiniSpawn();
 			Destroy(gameObject);
+			HighScoreScript.Instance.Scoretext();
 		}
         if (enemyHit.collider.CompareTag("Munakoiso"))
         {
-
-			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			PlayerRespawn.Instance.MunakoisoSpawn();
 			Destroy(gameObject);
+			HighScoreScript.Instance.Scoretext();
 		}
         if (enemyHit.collider.CompareTag("Peach"))
         {
-
-			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			PlayerRespawn.Instance.PeachSpawn();
 			Destroy(gameObject);
+			HighScoreScript.Instance.Scoretext();
 		}
         if (enemyHit.collider.CompareTag("Paaryna"))
         {
 
 			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			PlayerRespawn.Instance.PaarynaSpawn();
+			//PlayerRespawn.Instance.PaarynaSpawn();
 			Destroy(gameObject);
+			HighScoreScript.Instance.Scoretext();
 		}
         if (enemyHit.collider.CompareTag("Vesimelooni"))
         {
-
 			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			PlayerRespawn.Instance.VesimelooniSpawn();
+			//PlayerRespawn.Instance.VesimelooniSpawn();
 			Destroy(gameObject);
+			HighScoreScript.Instance.Scoretext();
 		}
+	}
+
+	IEnumerator RespawnAppelsiini()
+	{
+		yield return new WaitForSeconds(5);
+		Destroy(gameObject);
 	}
 }

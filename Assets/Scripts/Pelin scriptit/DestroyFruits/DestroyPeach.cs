@@ -8,19 +8,22 @@ public class DestroyPeach : MonoBehaviour
 	{
 		if (enemyHit.collider.CompareTag("Player"))
 		{
-
+			//Respawn();
 			//Spawner.instance.FruitsOnScreen--;
 			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			PlayerRespawn.Instance.MunakoisoSpawn();
-			Respawn();
+			//PlayerRespawn.Instance.VesimelooniSpawn();
+			if (PlayerRespawn.Instance.whatToSpawnClone[3] == null)
+			{
+				Respawn();
+			}
 			Destroy(gameObject);
 		}
 	}
 
 	IEnumerator Respawn()
 	{
-		yield return new WaitForSeconds(2f);
-		//PlayerRespawn.Instance.PeachSpawn();
-		//Destroy(gameObject);
+		yield return new WaitForSeconds(15);
+		PlayerRespawn.Instance.PeachSpawn();
+		yield return null;
 	}
 }

@@ -7,11 +7,16 @@ public class PlayerRespawn : MonoBehaviour
     public Transform[] spawnLocations;
     public GameObject[] whatToSpawnPrefab;
     public GameObject[] whatToSpawnClone;
+    //public int random = new Random(5);
+
+    int timeMillis;
+    int timeRand;
 
     public static PlayerRespawn Instance;
 
     private void Start()
     {
+        //timeRand = random.Next(5);
         Instance = this;
         BallSpawn();
         AppelsiiniSpawn();
@@ -22,6 +27,11 @@ public class PlayerRespawn : MonoBehaviour
     }
     private void Update()
     {
+        //if (timeMillis >= timeRand)
+        //{
+        //    PlayerRespawn.Instance.AppelsiiniSpawn();
+        //}
+
         if (whatToSpawnClone[0] == null)
         {
             BallSpawn();
@@ -47,6 +57,9 @@ public class PlayerRespawn : MonoBehaviour
             PaarynaSpawn();
         }
     }
+
+
+    //resettaa gameobjectin position ennemmin kuin tuhoa gameobject. Ota spawnlocation transformi ja kun transformi on tehty laita gameobject.setactive(true); kun ienumerator on mennyt lapi
 
     public void BallSpawn()
     {

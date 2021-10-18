@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class DestroyVesimelooni : MonoBehaviour
 {
-	void OnCollisionEnter2D(Collision2D enemyHit)
+  //  private void Start()
+  //  {
+		//StartCoroutine(Respawn());
+  //  }
+
+    void OnCollisionEnter2D(Collision2D enemyHit)
 	{
 		if (enemyHit.collider.CompareTag("Player"))
 		{
-
+			//Respawn();
 			//Spawner.instance.FruitsOnScreen--;
 			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			PlayerRespawn.Instance.VesimelooniSpawn();
-			Respawn();
+			//PlayerRespawn.Instance.VesimelooniSpawn();
+            if (PlayerRespawn.Instance.whatToSpawnClone[4] == null)
+            {
+				Respawn();
+            }
 			Destroy(gameObject);
 		}
 	}
 	IEnumerator Respawn()
 	{
-		yield return new WaitForSeconds(2f);
-		//PlayerRespawn.Instance.VesimelooniSpawn();
-		//Destroy(gameObject);
+		yield return new WaitForSeconds(15);
+		PlayerRespawn.Instance.VesimelooniSpawn();
+		yield return null;
 	}
 }

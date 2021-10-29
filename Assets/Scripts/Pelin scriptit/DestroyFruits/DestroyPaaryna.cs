@@ -8,10 +8,15 @@ public class DestroyPaaryna : MonoBehaviour
 	{
 		if (enemyHit.collider.CompareTag("Player"))
 		{
-			//Respawn();
-			//Spawner.instance.FruitsOnScreen--;
-			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			//PlayerRespawn.Instance.VesimelooniSpawn();
+			if (PlayerRespawn.Instance.whatToSpawnClone[5] == null)
+			{
+				Respawn();
+			}
+			Destroy(gameObject);
+		}
+
+		if (enemyHit.collider.CompareTag("Deathbox"))
+		{
 			if (PlayerRespawn.Instance.whatToSpawnClone[5] == null)
 			{
 				Respawn();
@@ -21,7 +26,7 @@ public class DestroyPaaryna : MonoBehaviour
 	}
 	IEnumerator Respawn()
 	{
-		yield return new WaitForSeconds(15);
+		yield return new WaitForSeconds(5);
 		PlayerRespawn.Instance.PaarynaSpawn();
 		yield return null;
 	}

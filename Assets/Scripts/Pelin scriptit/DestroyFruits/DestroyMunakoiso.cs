@@ -8,10 +8,15 @@ public class DestroyMunakoiso : MonoBehaviour
 	{
 		if (enemyHit.collider.CompareTag("Player"))
 		{
-			//Respawn();
-			//Spawner.instance.FruitsOnScreen--;
-			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			//PlayerRespawn.Instance.VesimelooniSpawn();
+			if (PlayerRespawn.Instance.whatToSpawnClone[2] == null)
+			{
+				Respawn();
+			}
+			Destroy(gameObject);
+		}
+
+		if (enemyHit.collider.CompareTag("Deathbox"))
+		{
 			if (PlayerRespawn.Instance.whatToSpawnClone[2] == null)
 			{
 				Respawn();
@@ -22,7 +27,7 @@ public class DestroyMunakoiso : MonoBehaviour
 
 	IEnumerator Respawn()
 	{
-		yield return new WaitForSeconds(15);
+		yield return new WaitForSeconds(5);
 		PlayerRespawn.Instance.MunakoisoSpawn();
 		yield return null;
 	}

@@ -7,32 +7,29 @@ public class DestroyAppelsiini : MonoBehaviour
 	int timeMillis;
 	int timeRand;
 
-	//  private void Update()
-	//  {
-	//if (timeMillis >= timeRand)
-	//      {
-	//	PlayerRespawn.Instance.AppelsiiniSpawn();
-	//}
-	//  }
-
 	void OnCollisionEnter2D(Collision2D enemyHit)
 	{
 		if (enemyHit.collider.CompareTag("Player"))
 		{
-			//Respawn();
-			//Spawner.instance.FruitsOnScreen--;
-			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			//PlayerRespawn.Instance.VesimelooniSpawn();
 			if (PlayerRespawn.Instance.whatToSpawnClone[1] == null)
 			{
 				Respawn();
 			}
 			Destroy(gameObject);
 		}
+
+        if (enemyHit.collider.CompareTag("Deathbox"))
+        {
+            if (PlayerRespawn.Instance.whatToSpawnClone[1] == null)
+            {
+				Respawn();
+            }
+			Destroy(gameObject);
+        }
 	}
 	IEnumerator Respawn()
 	{
-		yield return new WaitForSeconds(15);
+		yield return new WaitForSeconds(5);
 		PlayerRespawn.Instance.MunakoisoSpawn();
 		yield return null;
 	}

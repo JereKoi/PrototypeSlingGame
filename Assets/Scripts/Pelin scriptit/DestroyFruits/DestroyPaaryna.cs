@@ -6,16 +6,19 @@ public class DestroyPaaryna : MonoBehaviour
 {
 	void OnCollisionEnter2D(Collision2D enemyHit)
 	{
-		if (enemyHit.collider.CompareTag("Player"))
-		{
-			if (PlayerRespawn.Instance.whatToSpawnClone[5] == null)
+        if (Ball.instance.isReleased == true)
+        {
+			if (enemyHit.collider.CompareTag("Player"))
 			{
-				Respawn();
+				if (PlayerRespawn.Instance.whatToSpawnClone[5] == null)
+				{
+					Respawn();
+				}
+				Destroy(gameObject);
 			}
-			Destroy(gameObject);
 		}
 
-		if (enemyHit.collider.CompareTag("Deathbox"))
+        if (enemyHit.collider.CompareTag("Deathbox"))
 		{
 			if (PlayerRespawn.Instance.whatToSpawnClone[5] == null)
 			{

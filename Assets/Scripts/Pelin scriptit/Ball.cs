@@ -8,11 +8,13 @@ public class Ball : MonoBehaviour {
 	public Rigidbody2D rb;
 	public Rigidbody2D hook;
 
-	//[SerializeField] float releaseTime = .50f;
 	public float maxDragDistance = 2f;
 	public float shootPower = 10;
 
 	private bool isPressed = false;
+	public bool isReleased = false;
+
+	public static Ball instance;
 
 	public GameObject Appelsiini;
 	public GameObject Munakoiso;
@@ -23,16 +25,19 @@ public class Ball : MonoBehaviour {
 
     private void Start()
     {
+		instance = this;
 		rb.isKinematic = true;
 		rb.velocity = Vector2.zero;
 
-		StartCoroutine(RespawnAppelsiini());
+		StartCoroutine(RespawnKivi());
     }
 
     void Update ()
 	{
 		if (isPressed)
 		{
+			
+			Time.timeScale = 0.2f;
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 			if (Vector3.Distance(mousePos, hook.position) > maxDragDistance)
@@ -54,11 +59,12 @@ public class Ball : MonoBehaviour {
 
 	void OnMouseUp ()
 	{
+		isReleased = true;
 		isPressed = false;
 		rb.isKinematic = false;
 		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		rb.velocity = (mousePos - hook.position).normalized * -shootPower;
-
+		Time.timeScale = 1f;
 		StartCoroutine(Respawn());
 	}
 
@@ -69,41 +75,36 @@ public class Ball : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
-	void OnCollisionEnter2D(Collision2D enemyHit)
+	public void OnCollisionEnter2D(Collision2D enemyHit)
 	{
 		if (enemyHit.collider.CompareTag("Appelsiini"))
 		{
 			Destroy(gameObject);
 			HighScoreScript.Instance.Scoretext();
 		}
-        if (enemyHit.collider.CompareTag("Munakoiso"))
-        {
+		if (enemyHit.collider.CompareTag("Munakoiso"))
+		{
 			Destroy(gameObject);
 			HighScoreScript.Instance.Scoretext();
 		}
-        if (enemyHit.collider.CompareTag("Peach"))
-        {
+		if (enemyHit.collider.CompareTag("Peach"))
+		{
 			Destroy(gameObject);
 			HighScoreScript.Instance.Scoretext();
 		}
-        if (enemyHit.collider.CompareTag("Paaryna"))
-        {
-
-			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			//PlayerRespawn.Instance.PaarynaSpawn();
+		if (enemyHit.collider.CompareTag("Paaryna"))
+		{
 			Destroy(gameObject);
 			HighScoreScript.Instance.Scoretext();
 		}
-        if (enemyHit.collider.CompareTag("Vesimelooni"))
-        {
-			//Instantiate(deathEffect, transform.position, Quaternion.identity);
-			//PlayerRespawn.Instance.VesimelooniSpawn();
+		if (enemyHit.collider.CompareTag("Vesimelooni"))
+		{
 			Destroy(gameObject);
 			HighScoreScript.Instance.Scoretext();
 		}
 	}
 
-	IEnumerator RespawnAppelsiini()
+	IEnumerator RespawnKivi()
 	{
 		yield return new WaitForSeconds(5);
 		Destroy(gameObject);

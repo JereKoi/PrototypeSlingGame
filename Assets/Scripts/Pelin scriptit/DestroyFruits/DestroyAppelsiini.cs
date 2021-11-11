@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class DestroyAppelsiini : MonoBehaviour
 {
-	int timeMillis;
-	int timeRand;
-
 	void OnCollisionEnter2D(Collision2D enemyHit)
 	{
-		if (enemyHit.collider.CompareTag("Player"))
-		{
-			if (PlayerRespawn.Instance.whatToSpawnClone[1] == null)
+        if (Ball.instance.isReleased == true)
+        {
+			if (enemyHit.collider.CompareTag("Player"))
 			{
-				Respawn();
+				if (PlayerRespawn.Instance.whatToSpawnClone[1] == null)
+				{
+					Respawn();
+				}
+				Destroy(gameObject);
 			}
-			Destroy(gameObject);
 		}
+		
 
         if (enemyHit.collider.CompareTag("Deathbox"))
         {

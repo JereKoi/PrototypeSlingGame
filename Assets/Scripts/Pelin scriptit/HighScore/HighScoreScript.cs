@@ -15,12 +15,11 @@ public class HighScoreScript : MonoBehaviour
     private void Start()
     {
         Instance = this;
-        highScoreText.text = "Score: " + this.Score.ToString();
+        highScoreText.text = this.Score.ToString();
     }
     public void Scoretext()
     {
-        //PlayerPrefs.SetInt("score", Score);
-        highScoreText.text = "Score: " + this.Score.ToString();
+        highScoreText.text = this.Score.ToString();
         Score++;
     }
 }

@@ -6,17 +6,19 @@ public class DestroyVesimelooni : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D enemyHit)
 	{
-		if (enemyHit.collider.CompareTag("Player"))
-		{
-
-            if (PlayerRespawn.Instance.whatToSpawnClone[4] == null)
-            {
-				Respawn();
-            }
-			Destroy(gameObject);
+        if (Ball.instance.isReleased == true)
+        {
+			if (enemyHit.collider.CompareTag("Player"))
+			{
+				if (PlayerRespawn.Instance.whatToSpawnClone[4] == null)
+				{
+					Respawn();
+				}
+				Destroy(gameObject);
+			}
 		}
 
-		if (enemyHit.collider.CompareTag("Deathbox"))
+        if (enemyHit.collider.CompareTag("Deathbox"))
 		{
 			if (PlayerRespawn.Instance.whatToSpawnClone[4] == null)
 			{

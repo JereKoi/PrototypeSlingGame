@@ -61,7 +61,8 @@ public class HealthSystem : MonoBehaviour
     {
         if (Health <= 0)
         {
-            Time.timeScale = 0.3f;
+            Time.timeScale = 0f;
+            AdsManager.instance.PlayInterstitialAd();
             HealthTextUI.SetActive(false);
             Heart.SetActive(false);
             GameoverScreen.SetActive(true);

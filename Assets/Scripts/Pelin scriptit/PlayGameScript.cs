@@ -7,7 +7,7 @@ public class PlayGameScript : MonoBehaviour
 {
     public void PlayGameButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
     }
 }

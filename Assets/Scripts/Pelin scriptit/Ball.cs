@@ -81,6 +81,7 @@ public class Ball : MonoBehaviour {
 		{
 			Destroy(gameObject);
 			HighScoreScript.Instance.Scoretext();
+
 		}
 		if (enemyHit.collider.CompareTag("Munakoiso"))
 		{

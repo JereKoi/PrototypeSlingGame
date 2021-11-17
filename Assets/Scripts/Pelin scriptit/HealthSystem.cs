@@ -6,7 +6,7 @@ using TMPro;
 
 public class HealthSystem : MonoBehaviour
 {
-    public int Health = 5;
+    public int Health = 15;
 
     [SerializeField] TextMeshProUGUI HealthText;
 
@@ -17,6 +17,8 @@ public class HealthSystem : MonoBehaviour
     public GameObject HealthTextUI;
     public GameObject ScoreBackground;
     public GameObject ScoreText;
+    public GameObject Spawner;
+    public GameObject ball;
 
     private void Start()
     {
@@ -59,22 +61,25 @@ public class HealthSystem : MonoBehaviour
 
     public void Death()
     {
+        if (Health == 0)
+        {
+            AdsManager.instance.PlayInterstitialAd();
+        }
         if (Health <= 0)
         {
+            Spawner.SetActive(false);
             Time.timeScale = 0f;
-            AdsManager.instance.PlayInterstitialAd();
             HealthTextUI.SetActive(false);
             Heart.SetActive(false);
             GameoverScreen.SetActive(true);
             ScoreBackground.SetActive(false);
             ScoreText.SetActive(false);
-            //SceneManager.LoadScene(0);  //<---- Gameover screen
         }
     }
 
     public void ContinueButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
         Time.timeScale = 1f;
     }
 

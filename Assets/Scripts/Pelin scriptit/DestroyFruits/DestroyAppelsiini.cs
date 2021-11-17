@@ -8,30 +8,29 @@ public class DestroyAppelsiini : MonoBehaviour
 	{
         if (Ball.instance.isReleased == true)
         {
-			if (enemyHit.collider.CompareTag("Player"))
-			{
-				if (PlayerRespawn.Instance.whatToSpawnClone[1] == null)
-				{
-					Respawn();
-				}
-				Destroy(gameObject);
-			}
-		}
-		
+            if (enemyHit.collider.CompareTag("Player"))
+            {
+                if (PlayerRespawn.Instance.whatToSpawnClone[1] == null)
+                {
+                    Respawn();
+                }
+                Destroy(gameObject);
+            }
+        }
 
         if (enemyHit.collider.CompareTag("Deathbox"))
-        {
-            if (PlayerRespawn.Instance.whatToSpawnClone[1] == null)
-            {
+		{
+			if (PlayerRespawn.Instance.whatToSpawnClone[1] == null)
+			{
 				Respawn();
-            }
+			}
 			Destroy(gameObject);
-        }
+		}
 	}
 	IEnumerator Respawn()
 	{
 		yield return new WaitForSeconds(5);
-		PlayerRespawn.Instance.MunakoisoSpawn();
+		PlayerRespawn.Instance.AppelsiiniSpawn();
 		yield return null;
 	}
 }

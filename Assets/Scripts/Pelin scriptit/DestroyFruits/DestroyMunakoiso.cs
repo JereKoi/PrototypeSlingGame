@@ -8,15 +8,15 @@ public class DestroyMunakoiso : MonoBehaviour
 	{
         if (Ball.instance.isReleased == true)
         {
-			if (enemyHit.collider.CompareTag("Player"))
-			{
-				if (PlayerRespawn.Instance.whatToSpawnClone[2] == null)
-				{
-					Respawn();
-				}
-				Destroy(gameObject);
-			}
-		}
+            if (enemyHit.collider.CompareTag("Player"))
+            {
+                if (PlayerRespawn.Instance.whatToSpawnClone[2] == null)
+                {
+                    Respawn();
+                }
+                Destroy(gameObject);
+            }
+        }
 
         if (enemyHit.collider.CompareTag("Deathbox"))
 		{

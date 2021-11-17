@@ -11,15 +11,21 @@ public class HighScoreScript : MonoBehaviour
     public int Score = 0;
     public string scoreString;
     public static HighScoreScript Instance;
+    public TextMeshProUGUI highScoreEndText;
+    public TextMeshProUGUI highscorePauseText;
 
     private void Start()
     {
         Instance = this;
         highScoreText.text = this.Score.ToString();
+        highScoreEndText.text = "Your Score: " + this.Score.ToString();
+        highscorePauseText.text = "Your Score: " + this.Score.ToString();
     }
     public void Scoretext()
     {
         highScoreText.text = this.Score.ToString();
+        highScoreEndText.text = "Your Score: " + this.Score.ToString();
+        highscorePauseText.text = "Your Score: " + this.Score.ToString();
         Score++;
     }
 }
